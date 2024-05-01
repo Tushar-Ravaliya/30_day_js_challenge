@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>day 1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="flex justify-around items-center h-screen">
+      <div data-key="65" class="key transition-all p-6">A</div>
+      <div data-key="83" class="key transition-all p-6">S</div>
+      <div data-key="68" class="key transition-all p-6">D</div>
+      <div data-key="70" class="key transition-all p-6">F</div>
+      <div data-key="71" class="key transition-all p-6">G</div>
+      <div data-key="72" class="key transition-all p-6">H</div>
+      <div data-key="74" class="key transition-all p-6">J</div>
+    </div>
+    <audio data-key="65" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"></audio>
+    <audio data-key="83" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3"></audio>
+    <audio data-key="68" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3"></audio>
+    <audio data-key="70" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3"></audio>
+    <audio data-key="71" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3"></audio>
+    <audio data-key="72" src="https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3"></audio>
+    <audio data-key="74" src="https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3"></audio>
+    <script>
+      window.addEventListener("keydown", (e) => {
+        const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+        const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+        if(!audio) return;
+        audio.currentTime = 0;
+        audio.play();
+        key.classList.add('border-2','scale-50', 'border-teal-400');
+      });
+
+      function removeTransition(e){
+        if (e.propertyName !== 'transform') return;
+        this.classList.remove('border-2','scale-50', 'border-teal-400');
+      }
+      const keys = document.querySelectorAll('.key');
+      keys.forEach(key => key.addEventListener('transitionend',removeTransition))
+    </script>
+  </body>
+</html>
