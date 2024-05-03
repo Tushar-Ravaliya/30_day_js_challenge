@@ -1,4 +1,9 @@
-/node_modules
+.DS_Store
+node_modules/
+*.log
+haters/
+.idea/
+
 /input.css
 /output.css
 /package-lock.json
